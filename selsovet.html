@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Сельсоветы Борисовского района Минской области Беларуси. 12 сельсоветов, 297 сельских населённых пунктов. Административные центры, население, площадь." />
+  <title>Сельсоветы Борисовского района — Борисов</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.7;
+      color: #1f2937;
+      background: #f9fafb;
+    }
+    a { color: #2563eb; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #3b82f6 100%);
+      color: #fff;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .header h1 { font-size: 3rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .header .subtitle { font-size: 1.25rem; opacity: 0.9; }
+    .back-link {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1.5rem;
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 2rem;
+      color: #fff;
+      font-size: 0.9rem;
+      transition: background 0.3s;
+    }
+    .back-link:hover { background: rgba(255,255,255,0.3); text-decoration: none; }
+
+    /* Content */
+    .content { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; }
+
+    /* Intro */
+    .intro {
+      background: #fff;
+      border-radius: 1rem;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    }
+    .intro h2 { font-size: 1.75rem; margin-bottom: 1rem; color: #111827; }
+    .intro p { margin-bottom: 1rem; }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .stat-card {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .stat-card .value { font-size: 2rem; font-weight: 700; color: #1e40af; }
+    .stat-card .label { font-size: 0.9rem; color: #4b5563; margin-top: 0.25rem; }
+
+    /* Table */
+    .table-container {
+      background: #fff;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+      overflow-x: auto;
+    }
+    .table-header {
+      background: #1e40af;
+      color: #fff;
+      padding: 1.5rem 2rem;
+    }
+    .table-header h2 { font-size: 1.5rem; margin-bottom: 0.25rem; }
+    .table-header p { opacity: 0.9; font-size: 0.9rem; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+    thead {
+      background: #f3f4f6;
+    }
+    th {
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+      color: #374151;
+      border-bottom: 2px solid #e5e7eb;
+    }
+    td {
+      padding: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    tr:hover { background: #f9fafb; }
+    .num { text-align: center; font-weight: 600; color: #6b7280; }
+    .name { font-weight: 600; color: #111827; }
+    .bel-name { font-size: 0.85rem; color: #6b7280; font-style: italic; }
+
+    /* Cards for mobile */
+    .cards-mobile { display: none; }
+    .card-item {
+      background: #fff;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .card-item h3 {
+      font-size: 1.25rem;
+      color: #1e40af;
+      margin-bottom: 0.5rem;
+    }
+    .card-item .bel-name {
+      font-size: 0.9rem;
+      color: #6b7280;
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    .card-item .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #f3f4f6;
+    }
+    .card-item .info-row:last-child { border-bottom: none; }
+    .card-item .info-label { color: #6b7280; font-size: 0.9rem; }
+    .card-item .info-value { font-weight: 600; color: #111827; }
+
+    /* Footer */
+    footer {
+      background: #111827;
+      color: #d1d5db;
+      padding: 2rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+    footer p { font-size: 0.9rem; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header h1 { font-size: 2rem; }
+      .table-container { display: none; }
+      .cards-mobile { display: block; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <h1>🏘️ Сельсоветы Борисовского района</h1>
+    <p class="subtitle">Административно-территориальное деление района</p>
+    <a href="index.html" class="back-link">← Вернуться на главную</a>
+  </header>
+
+  <main class="content">
+    <!-- Intro -->
+    <div class="intro">
+      <h2>О Борисовском районе</h2>
+      <p>
+        <strong>Борисовский район</strong> (<em>бел. Барысаўскі раён</em>) — административно-территориальная единица 
+        на северо-востоке Минской области Беларуси. Район образован 17 июля 1924 года.
+      </p>
+      <p>
+        В состав района входят город районного подчинения <strong>Борисов</strong> и <strong>12 сельсоветов</strong>, 
+        на территории которых расположены <strong>297 сельских населённых пунктов</strong>.
+      </p>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="value">2 977 км²</div>
+          <div class="label">Площадь района</div>
+        </div>
+        <div class="stat-card">
+          <div class="value">165 511</div>
+          <div class="label">Население (2026)</div>
+        </div>
+        <div class="stat-card">
+          <div class="value">12</div>
+          <div class="label">Сельсоветов</div>
+        </div>
+        <div class="stat-card">
+          <div class="value">297</div>
+          <div class="label">Сельских н.п.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table for desktop -->
+    <div class="table-container">
+      <div class="table-header">
+        <h2>Список сельсоветов</h2>
+        <p>Данные на 2026 год</p>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th class="num">№</th>
+            <th>Название</th>
+            <th>Административный центр</th>
+            <th>Население</th>
+            <th>Площадь</th>
+            <th>Населённых пунктов</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="num">1</td>
+            <td>
+              <div class="name">Велятичский</div>
+              <div class="bel-name">Веляціцкі</div>
+            </td>
+            <td>аг. Велятичи</td>
+            <td>1 239</td>
+            <td>98,77 км²</td>
+            <td>14</td>
+          </tr>
+          <tr>
+            <td class="num">2</td>
+            <td>
+              <div class="name">Веселовский</div>
+              <div class="bel-name">Весялоўскі</div>
+            </td>
+            <td>д. Веселово</td>
+            <td>1 692</td>
+            <td>183,54 км²</td>
+            <td>20</td>
+          </tr>
+          <tr>
+            <td class="num">3</td>
+            <td>
+              <div class="name">Гливинский</div>
+              <div class="bel-name">Глівінскі</div>
+            </td>
+            <td>д. Гливин</td>
+            <td>3 358</td>
+            <td>344,45 км²</td>
+            <td>37</td>
+          </tr>
+          <tr>
+            <td class="num">4</td>
+            <td>
+              <div class="name">Зембинский</div>
+              <div class="bel-name">Зембінскі</div>
+            </td>
+            <td>аг. Зембин</td>
+            <td>970</td>
+            <td>215,36 км²</td>
+            <td>19</td>
+          </tr>
+          <tr>
+            <td class="num">5</td>
+            <td>
+              <div class="name">Иканский</div>
+              <div class="bel-name">Іканскі</div>
+            </td>
+            <td>д. Иканы</td>
+            <td>1 080</td>
+            <td>131,26 км²</td>
+            <td>13</td>
+          </tr>
+          <tr>
+            <td class="num">6</td>
+            <td>
+              <div class="name">Лошницкий</div>
+              <div class="bel-name">Лошніцкі</div>
+            </td>
+            <td>аг. Лошница</td>
+            <td>7 852</td>
+            <td>158,48 км²</td>
+            <td>23</td>
+          </tr>
+          <tr>
+            <td class="num">7</td>
+            <td>
+              <div class="name">Мётченский</div>
+              <div class="bel-name">Мётчанскі</div>
+            </td>
+            <td>д. Новая Мётча</td>
+            <td>2 847</td>
+            <td>304,33 км²</td>
+            <td>32</td>
+          </tr>
+          <tr>
+            <td class="num">8</td>
+            <td>
+              <div class="name">Моисеевщинский</div>
+              <div class="bel-name">Маісееўшчынскі</div>
+            </td>
+            <td>аг. Моисеевщина</td>
+            <td>1 478</td>
+            <td>497,21 км²</td>
+            <td>47</td>
+          </tr>
+          <tr>
+            <td class="num">9</td>
+            <td>
+              <div class="name">Мстижский</div>
+              <div class="bel-name">Мсціжскі</div>
+            </td>
+            <td>аг. Мстиж</td>
+            <td>779</td>
+            <td>229,89 км²</td>
+            <td>23</td>
+          </tr>
+          <tr>
+            <td class="num">10</td>
+            <td>
+              <div class="name">Неманицкий</div>
+              <div class="bel-name">Неманіцкі</div>
+            </td>
+            <td>аг. Неманица</td>
+            <td>1 537</td>
+            <td>96,47 км²</td>
+            <td>12</td>
+          </tr>
+          <tr>
+            <td class="num">11</td>
+            <td>
+              <div class="name">Пересадский</div>
+              <div class="bel-name">Перасадскі</div>
+            </td>
+            <td>аг. Пересады</td>
+            <td>1 398</td>
+            <td>136,83 км²</td>
+            <td>11</td>
+          </tr>
+          <tr>
+            <td class="num">12</td>
+            <td>
+              <div class="name">Пригородный</div>
+              <div class="bel-name">Прыгарадны</div>
+            </td>
+            <td>аг. Старо-Борисов</td>
+            <td>7 581</td>
+            <td>523,86 км²</td>
+            <td>46</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Cards for mobile -->
+    <div class="cards-mobile">
+      <div class="card-item">
+        <h3>1. Велятичский</h3>
+        <div class="bel-name">Веляціцкі</div>
+        <div class="info-row"><span class="info-label">Админ. центр:</span><span class="info-value">аг. Велятичи</span></div>
+        <div class="info-row"><span class="info-label">Население:</span><span class="info-value">1 239</span></div>
+        <div class="info-row"><span class="info-label">Площадь:</span><span class="info-value">98,77 км²</span></div>
+        <div class="info-row"><span class="info-label">Населённых пунктов:</span><span class="info-value">14</span></div>
+      </div>
+
+      <div class="card-item">
+        <h3>2. Веселовский</h3>
+        <div class="bel-name">Весялоўскі</div>
+        <div class="info-row"><span class="info-label">Админ. центр:</span><span class="info-value">д. Веселово</span></div>
+        <div class="info-row"><span class="info-label">Население:</span><span class="info-value">1 692</span></div>
+        <div class="info-row"><span class="info-label">Площадь:</span><span class="info-value">183,54 км²</span></div>
+        <div class="info-row"><span class="info-label">Населённых пунктов:</span><span class="info-value">20</span></div>
+      </div>
+
+      <div class="card-item">
+        <h3>3. Гливинский</h3>
+        <div class="bel-name">Глівінскі</div>
+        <div class="info-row"><span class="info-label">Админ. центр:</span><span class="info-value">д. Гливин</span></div>
+        <div class="info-row"><span class="info-label">Население:</span><span class="info-value">3 358</span></div>
+        <div class="info-row"><span class="info-label">Площадь:</span><span class="info-value">344,45 км²</span></div>
+        <div class="info-row"><span class="info-label">Населённых пунктов:</span><span class="info-value">37</span></div>
+      </div>
+
+      <div class="card-item">
+        <h3>4. Зембинский</h3>
+        <div class="bel-name">Зембінскі</div>
+        <div class="info-row"><span class="info-label">Админ. центр:</span><span class="info-value">аг. Зембин</span></div>
+        <div class="info-row"><span class="info-label">Население:</span><span class="info-value">970</span></div>
+        <div class="info-row"><span class="info-label">Площадь:</span><span class="info-value">215,36 км²</span></div>
+        <div class="info-row"><span class="info-label">Населённых пунктов:</span><span class="info-value">19</span></div>
+      </div>
+
+      <div class="card-item">
+        <h3>5. Иканский</h3>
+        <div class="bel-name">Іканскі</div>
+        <div class="info-row"><span class="info-label">Админ. центр:</span><span class="info-value">д. Иканы</span></div>
+        <div class="info-row"><span class="info-label">Население:</span><span class="info-value">1 080</span></div>
+        <div class="info-row"><span class="info-label">Площадь:</span><span class="info-value">131,26 км²</span></div>
+        <div class="info-row"><span class="info-label">Населённых пунктов:</span><span class="info-value">13</span></div>
+      </div>
+
+      <div class="card-item">
+        <h3>6. Лошницкий</h3>
+        <div class="bel-name">Лошніцкі</div>
+        <div class="info-row"><span class="info-label">Админ. центр:</span><span class="info-value">аг. Лошница</span></div>
+        <div class="info-row"><span class="info-label">Население:</span><span class="info-value">7 852</span></div>
+        <div class="info-row"><span class="info-label">Площадь:</span><span class="info-value">158,48 км²</span></div>
+        <div class="info-row"><span class="info-label">Населённых пунктов:</span><span class="info-value">23</span></div>
+      </div>
+
+      <div class="card-item">
+        <h3>7. Мётченский</h3>
+        <div class="bel-name">Мётчанскі</div>
+        <div class="info-row"><span class="info-label">Админ. центр:</span><span class="info-value">д. Новая Мётча</span></div>
+        <div class="info-row"><span class="info-label">Население:</span><span class="info-value">2 847</span></div>
+        <div class="info-row"><span class="info-label">Площадь:</span><span class="info-value">304,33 км²</span></div>
+        <div class="info-row"><span class="info-label">Населённых пунктов:</span><span class="info-value">32</span></div>
+      </div>
+
+      <div class="card-item">
+        <h3>8. Моисеевщинский</h3>
+        <div class="bel-name">Маісееўшчынскі</div>
+        <div class="info-row"><span class="info-label">Админ. центр:</span><span class="info-value">аг. Моисеевщина</span></div>
+        <div class="info-row"><span class="info-label">Население:</span><span class="info-value">1 478</span></div>
+        <div class="info-row"><span class="info-label">Площадь:</span><span class="info-value">497,21 км²</span></div>
+        <div class="info-row"><span class="info-label">Населённых пунктов:</span><span class="info-value">47</span></div>
+      </div>
+
+      <div class="card-item">
+        <h3>9. Мстижский</h3>
+        <div class="bel-name">Мсціжскі</div>
+        <div class="info-row"><span class="info-label">Админ. центр:</span><span class="info-value">аг. Мстиж</span></div>
+        <div class="info-row"><span class="info-label">Население:</span><span class="info-value">779</span></div>
+        <div class="info-row"><span class="info-label">Площадь:</span><span class="info-value">229,89 км²</span></div>
+        <div class="info-row"><span class="info-label">Населённых пунктов:</span><span class="info-value">23</span></div>
+      </div>
+
+      <div class="card-item">
+        <h3>10. Неманицкий</h3>
+        <div class="bel-name">Неманіцкі</div>
+        <div class="info-row"><span class="info-label">Админ. центр:</span><span class="info-value">аг. Неманица</span></div>
+        <div class="info-row"><span class="info-label">Население:</span><span class="info-value">1 537</span></div>
+        <div class="info-row"><span class="info-label">Площадь:</span><span class="info-value">96,47 км²</span></div>
+        <div class="info-row"><span class="info-label">Населённых пунктов:</span><span class="info-value">12</span></div>
+      </div>
+
+      <div class="card-item">
+        <h3>11. Пересадский</h3>
+        <div class="bel-name">Перасадскі</div>
+        <div class="info-row"><span class="info-label">Админ. центр:</span><span class="info-value">аг. Пересады</span></div>
+        <div class="info-row"><span class="info-label">Население:</span><span class="info-value">1 398</span></div>
+        <div class="info-row"><span class="info-label">Площадь:</span><span class="info-value">136,83 км²</span></div>
+        <div class="info-row"><span class="info-label">Населённых пунктов:</span><span class="info-value">11</span></div>
+      </div>
+
+      <div class="card-item">
+        <h3>12. Пригородный</h3>
+        <div class="bel-name">Прыгарадны</div>
+        <div class="info-row"><span class="info-label">Админ. центр:</span><span class="info-value">аг. Старо-Борисов</span></div>
+        <div class="info-row"><span class="info-label">Население:</span><span class="info-value">7 581</span></div>
+        <div class="info-row"><span class="info-label">Площадь:</span><span class="info-value">523,86 км²</span></div>
+        <div class="info-row"><span class="info-label">Населённых пунктов:</span><span class="info-value">46</span></div>
+      </div>
+    </div>
+
+    <!-- Additional info -->
+    <div class="intro" style="margin-top: 2rem;">
+      <h2>Историческая справка</h2>
+      <p>
+        Борисовский район был образован 17 июля 1924 года в составе Борисовского округа Белорусской ССР. 
+        Изначально район был разделён на 17 сельсоветов. За свою историю административное деление района 
+        неоднократно менялось: создавались новые сельсоветы, некоторые упразднялись или объединялись.
+      </p>
+      <p>
+        В 2009 году были упразднены Бродовский, Корсаковичский, Кищинослободской, Холхолицкий и Черневичский 
+        сельсоветы. В 2013 году — Забашевичский, Новосёлковский, Оздятичский и Трояновский сельсоветы. 
+        В 2016 году — Зачистский сельсовет.
+      </p>
+      <p>
+        Современное деление на 12 сельсоветов установлено после реорганизации 2016 года.
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2024 Борисовский район | Источник: <a href="https://ru.wikipedia.org/wiki/Борисовский_район_(Минская_область)" target="_blank" rel="noopener noreferrer" style="color: #60a5fa;">Википедия</a></p>
+  </footer>
+
+</body>
+</html>

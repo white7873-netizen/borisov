@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Борисов (бел. Барысаў) — город в Минской области Республики Беларусь. Основан в 1102 году князем Борисом Всеславичем. Население 134 732 чел. Стоит на реке Березина." />
+  <title>Борисов — древний город на Березине</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.7;
+      color: #1f2937;
+      background: #f9fafb;
+    }
+    a { color: #2563eb; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #3b82f6 100%);
+      color: #fff;
+      padding: 2rem;
+    }
+    .hero-content { max-width: 800px; }
+    .hero h1 { font-size: 4rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -1px; }
+    .hero .subtitle { font-size: 1.5rem; opacity: 0.9; margin-bottom: 0.5rem; }
+    .hero .description { font-size: 1.1rem; opacity: 0.75; max-width: 600px; margin: 0 auto; }
+    .hero .emoji { font-size: 4rem; margin-bottom: 1.5rem; }
+    .hero .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+      opacity: 0.6;
+      font-size: 1.5rem;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-10px); }
+    }
+
+    /* Sections */
+    .section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      color: #111827;
+    }
+    .section-subtitle {
+      text-align: center;
+      color: #6b7280;
+      font-size: 1.1rem;
+      margin-bottom: 3rem;
+    }
+    .section-label {
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #2563eb;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Info Card */
+    .info-wrapper {
+      display: flex;
+      gap: 3rem;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+    .info-card {
+      flex: 0 0 300px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 1rem;
+      padding: 2rem;
+    }
+    .info-card h3 { text-align: center; font-size: 1.5rem; margin-bottom: 0.25rem; }
+    .info-card .alt-name { text-align: center; color: #6b7280; font-style: italic; margin-bottom: 1.5rem; }
+    .info-card .emoji-big { text-align: center; font-size: 3rem; margin-bottom: 1rem; }
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #dbeafe;
+      font-size: 0.9rem;
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-row .label { color: #4b5563; }
+    .info-row .value { font-weight: 600; color: #1e3a8a; }
+    .info-text { flex: 1; min-width: 300px; }
+    .info-text p { margin-bottom: 1rem; }
+
+    /* Subheadings */
+    h3.sub {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      color: #111827;
+    }
+    h4.sub {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #374151;
+    }
+
+    /* Timeline */
+    .timeline-section {
+      background: linear-gradient(135deg, #1e3a8a, #312e81);
+      padding: 4rem 2rem;
+      color: #fff;
+    }
+    .timeline-section h2 { text-align: center; font-size: 2rem; margin-bottom: 2rem; }
+    .timeline {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .timeline-item {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 0.75rem;
+      padding: 1rem 1.5rem;
+      text-align: center;
+      min-width: 160px;
+      backdrop-filter: blur(4px);
+    }
+    .timeline-item .year { font-size: 1.5rem; font-weight: 700; color: #fde68a; }
+    .timeline-item .event { font-size: 0.85rem; opacity: 0.85; margin-top: 0.25rem; }
+
+    /* Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
+    .card-bar { height: 4px; }
+    .card-body { padding: 1.5rem; }
+    .card-body .icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .card-body h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.75rem; }
+    .card-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+    .card-body h3 { font-size: 1.15rem; }
+    .card-body p { color: #4b5563; font-size: 0.95rem; }
+
+    /* Facts */
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .fact-item {
+      display: flex;
+      gap: 1rem;
+      background: #f3f4f6;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      transition: background 0.3s;
+    }
+    .fact-item:hover { background: #eff6ff; }
+    .fact-item .icon { font-size: 2rem; flex-shrink: 0; }
+    .fact-item p { color: #374151; }
+
+    /* Landmarks list */
+    .landmarks-list { list-style: none; margin-top: 1rem; }
+    .landmarks-list li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    .landmarks-list li::before { content: "•"; color: #2563eb; font-weight: bold; }
+
+    /* Nature */
+    .nature-section { background: linear-gradient(135deg, #ecfdf5, #d1fae5); }
+
+    /* Footer */
+    footer {
+      background: #111827;
+      color: #d1d5db;
+      padding: 3rem 2rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .footer-grid h4 { color: #fff; font-size: 1.1rem; margin-bottom: 1rem; }
+    .footer-grid ul { list-style: none; }
+    .footer-grid li { padding: 0.25rem 0; }
+    .footer-bottom {
+      text-align: center;
+      border-top: 1px solid #374151;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      color: #6b7280;
+      font-size: 0.9rem;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5rem; }
+      .hero .subtitle { font-size: 1.2rem; }
+      .section-title { font-size: 1.8rem; }
+      .info-wrapper { flex-direction: column; }
+      .info-card { flex: 1 1 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="emoji">🏰</div>
+      <h1>Борисов</h1>
+      <p class="subtitle">Древний город на берегах Березины</p>
+      <p class="description">
+        Один из старейших городов Беларуси с богатой историей, уходящей корнями в 1102 год.
+        Административный центр Борисовского района Минской области.
+      </p>
+    </div>
+    <div class="scroll-hint">↓</div>
+  </section>
+
+  <!-- О ГОРОДЕ -->
+  <section class="section">
+    <p class="section-label">Энциклопедия</p>
+    <h2 class="section-title">О городе Борисов</h2>
+    <p class="section-subtitle">Материал из Википедии — свободной энциклопедии</p>
+
+    <div class="info-wrapper">
+      <div class="info-card">
+        <div class="emoji-big">🏰</div>
+        <h3>Борисов</h3>
+        <p class="alt-name">бел. Барысаў</p>
+        <div class="info-row"><span class="label">Страна</span><span class="value">🇧🇾 Беларусь</span></div>
+        <div class="info-row"><span class="label">Область</span><span class="value">Минская</span></div>
+        <div class="info-row"><span class="label">Район</span><span class="value">Борисовский</span></div>
+        <div class="info-row"><span class="label">Основан</span><span class="value">1102 год</span></div>
+        <div class="info-row"><span class="label">Площадь</span><span class="value">46 км²</span></div>
+        <div class="info-row"><span class="label">Население</span><span class="value">134 732 чел.</span></div>
+        <div class="info-row"><span class="label">Высота НУМ</span><span class="value">173 м</span></div>
+        <div class="info-row"><span class="label">Часовой пояс</span><span class="value">UTC+3:00</span></div>
+        <div class="info-row"><span class="label">Телефонный код</span><span class="value">+375 177</span></div>
+        <div class="info-row"><span class="label">Почтовый индекс</span><span class="value">222120</span></div>
+        <div class="info-row"><span class="label">Автокод</span><span class="value">5</span></div>
+        <div class="info-row"><span class="label">Реки</span><span class="value">Березина, Сха</span></div>
+        <div class="info-row"><span class="label">Награда</span><span class="value">🏅 ООВ I ст.</span></div>
+      </div>
+
+      <div class="info-text">
+        <p><strong>Борисов</strong> (<em>бел. Барысаў</em>) — город в Минской области Республики Беларусь.
+        Административный центр Борисовского района. Территория города — 46 км².
+        Население — 134 732 человека (2025). Стоит на реке Березина, в 77 км от Минска.
+        В 2002 году Борисов отметил 900-летие.</p>
+
+        <h3 class="sub">📜 История</h3>
+
+        <h4 class="sub">Первое упоминание в летописях</h4>
+        <p>В литовских летописях город Борисов упоминается 1102 годом: «В 1102 году князь Борис Всеславич ходил на ятвяг и, победя их, возвратясь, поставил град во своё имя…». Укреплённое поселение возникло на мысу-останце на левом берегу тогдашнего русла Березины в нынешнем агрогородке Старо-Борисов и названо именем полоцкого князя Бориса (Рогволда) Всеславича. Первое прямое упоминание о городе в Лаврентьевской летописи относится к 1127 году, а в Ипатьевской — к 1128 году, как крепости Полоцкого княжества.</p>
+
+        <h4 class="sub">Возникновение нового города</h4>
+        <p>Новый город возник на 4 км ниже по течению реки, к юго-востоку от первоначального расположения. На левом берегу Березины при слиянии с ней реки Схи на острове размером 200×300 м в XIV веке был построен деревянный замок, который просуществовал вплоть до XVIII века. Борисовский замок представлял собой деревянно-земляное укрепление, окружённое глубоким рвом с водой площадью около 2 га.</p>
+
+        <h4 class="sub">В составе Великого княжества Литовского</h4>
+        <p>Благодаря географическому положению уже к середине XIII века Борисов входит в число известных торгово-ремесленных центров. В конце XIII века Борисов вошёл в состав Великого княжества Литовского. 10 августа 1563 года Борисов получил от великого князя Сигизмунда Магдебургское право, освобождавшее жителей города от феодальных повинностей и дававшее им право на самоуправление.</p>
+
+        <h4 class="sub">В составе Российской империи</h4>
+        <p>В состав Российской империи вместе с Минском и белорусскими землями Борисов вошёл после второго раздела Речи Посполитой в 1793 году, став уездным городом. Отечественная война 1812 года оставила глубокий след в истории города. Березинская переправа близ Борисова стала самой мрачной страницей истории войн Наполеона. Французы до сих пор употребляют слово «березина» (фр. Bérézina) как синоним полного провала и катастрофы.</p>
+
+        <h4 class="sub">Великая Отечественная война</h4>
+        <p>В период с 2 июля 1941 года по 1 июля 1944 года немецкими оккупационными властями в городе были созданы 6 лагерей смерти, в которых погибло более 33 тысяч человек. В боях за освобождение Борисова в 1944 отличились войска 3-го Белорусского фронта, 13 воинских частей и соединений удостоены почётного наименования «Борисовских». На знамени города — орден Отечественной войны I степени.</p>
+
+        <h4 class="sub">В составе Республики Беларусь</h4>
+        <p>С 1991 года после распада СССР Борисов относится к Республике Беларусь. В 2009 году Борисов награждён вымпелом «За мужнасць і стойкасць у гады Вялікай Айчыннай вайны». В 2021 году Борисов объявлен Культурной столицей Республики Беларусь.</p>
+
+        <h3 class="sub">🏭 Экономика</h3>
+        <p>Борисов — крупный промышленный город Минской области. В городе насчитывается 42 завода и фабрики, 16 совместных предприятий, 700 предприятий торговли и общественного питания всех форм собственности. Значителен промышленный потенциал — он представлен предприятиями отраслей машиностроения и металлообработки, приборостроения, химической, деревообрабатывающей, фармацевтической промышленности, производством хрустальной посуды, пластмассовых изделий, спичек и многих других товаров.</p>
+        <p>Среди крупнейших предприятий: ОАО «Борисовский завод агрегатов» (турбокомпрессоры), ОАО «БАТЭ» (стартеры и генераторы), ОАО «Борисовский хрусталь», ОАО «Борисовдрев» (спички, фанера, МДФ), ОАО «Борисовский мясокомбинат», СЗАО «БелДжи» (сборка автомобилей), Борисовская бумажная фабрика Гознака и многие другие.</p>
+
+        <h3 class="sub">🏟️ Спорт</h3>
+        <p>Борисов известен своим футбольным клубом <strong>БАТЭ</strong> — одним из самых титулованных клубов Беларуси. Городская «Борисов-Арена» вмещает 13 126 зрителей и является домашним стадионом клуба. Город являлся одним из мест проведения Чемпионата мира по футболу в залах 2015 года.</p>
+
+        <h3 class="sub">🤝 Города-побратимы</h3>
+        <p>Борисов поддерживает международное сотрудничество с рядом городов: Елец, Малоярославец, Мытищи, Подольск, Ногинск, Гагарин, Павлово, Ейск (Россия), Валмиера (Латвия), Нарва (Эстония), Капан (Армения), Кременчуг (Украина), Пазарджик (Болгария), Дрокия (Молдова).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="timeline-section">
+    <h2>📅 Ключевые даты</h2>
+    <div class="timeline">
+      <div class="timeline-item"><div class="year">1102</div><div class="event">Первое упоминание</div></div>
+      <div class="timeline-item"><div class="year">1563</div><div class="event">Магдебургское право</div></div>
+      <div class="timeline-item"><div class="year">1793</div><div class="event">В Российской империи</div></div>
+      <div class="timeline-item"><div class="year">1812</div><div class="event">Березинская переправа</div></div>
+      <div class="timeline-item"><div class="year">1944</div><div class="event">Освобождение</div></div>
+      <div class="timeline-item"><div class="year">2002</div><div class="event">900-летие города</div></div>
+      <div class="timeline-item"><div class="year">2021</div><div class="event">Культурная столица</div></div>
+    </div>
+  </section>
+
+  <!-- ДОСТОПРИМЕЧАТЕЛЬНОСТИ -->
+  <section class="section">
+    <p class="section-label">Достопримечательности</p>
+    <h2 class="section-title">Что посмотреть</h2>
+    <p class="section-subtitle">Борисов хранит множество памятников истории и культуры</p>
+
+      <div class="cards-grid">
+      <div class="card">
+        <div class="card-bar" style="background: linear-gradient(90deg, #f59e0b, #ea580c);"></div>
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0b/57/e9/3b/caption.jpg?w=600&h=400&s=1" alt="Свято-Воскресенский кафедральный собор" class="card-image" loading="lazy" />
+        <div class="card-body">
+          <h3>⛪ Свято-Воскресенский кафедральный собор</h3>
+          <p>Православный собор 1874 года постройки — один из главных архитектурных памятников города. Рейтинг на TripAdvisor: 4.7/5 (22 отзыва).</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-bar" style="background: linear-gradient(90deg, #fb7185, #ec4899);"></div>
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/4d/57/c0/caption.jpg?w=600&h=400&s=1" alt="Борисов-Арена" class="card-image" loading="lazy" />
+        <div class="card-body">
+          <h3>🏟️ Борисов-Арена</h3>
+          <p>Современный стадион вместимостью 13 126 зрителей — домашняя арена футбольного клуба БАТЭ. Рейтинг: 4.7/5 (57 отзывов).</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-bar" style="background: linear-gradient(90deg, #34d399, #10b981);"></div>
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/19/a4/68/63/img-20191015-112540-largejpg.jpg?w=600&h=400&s=1" alt="Брилёво поле" class="card-image" loading="lazy" />
+        <div class="card-body">
+          <h3>🌳 Брилёво поле</h3>
+          <p>Историко-мемориальный комплекс на месте Березинской переправы 1812 года. Культурные объекты и достопримечательности. Рейтинг: 4.5/5 (14 отзывов).</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-bar" style="background: linear-gradient(90deg, #a78bfa, #7c3aed);"></div>
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/c5/b3/9c/caption.jpg?w=600&h=400&s=1" alt="Памятник князю Борису" class="card-image" loading="lazy" />
+        <div class="card-body">
+          <h3>🗿 Памятник князю Борису</h3>
+          <p>Памятник основателю города князю Борису Всеславичу, установлен в 2002 году к 900-летию города. Рейтинг: 4.8/5 (16 отзывов).</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-bar" style="background: linear-gradient(90deg, #60a5fa, #6366f1);"></div>
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/c4/36/1f/caption.jpg?w=600&h=400&s=1" alt="Шуховская Водонапорная Башня" class="card-image" loading="lazy" />
+        <div class="card-body">
+          <h3>🗼 Шуховская Водонапорная Башня</h3>
+          <p>Гиперболоидная водонапорная башня 1927 года по проекту Владимира Шухова. Уникальный памятник архитектуры конструктивизма. Рейтинг: 3.4/5 (12 отзывов).</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-bar" style="background: linear-gradient(90deg, #fbbf24, #d97706);"></div>
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/09/8f/1b/a6/photo0jpg.jpg?w=600&h=400&s=1" alt="Мемориал Борисовским Батареям" class="card-image" loading="lazy" />
+        <div class="card-body">
+          <h3>💣 Мемориал Борисовским Батареям</h3>
+          <p>Памятник артиллерийской батареи российских войск 1812 года на правом берегу Березины. Первый исторический памятник Борисова. Рейтинг: 4.3/5 (11 отзывов).</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-bar" style="background: linear-gradient(90deg, #818cf8, #4f46e5);"></div>
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/5b/fd/54/caption.jpg?w=600&h=400&s=1" alt="Борисовский государственный объединенный музей" class="card-image" loading="lazy" />
+        <div class="card-body">
+          <h3>🏛️ Борисовский государственный объединенный музей</h3>
+          <p>Музей с 41,5 тыс. экспонатов, рассказывающих об истории города и региона от древности до наших дней. Рейтинг: 4.6/5 (8 отзывов).</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-bar" style="background: linear-gradient(90deg, #f472b6, #db2777);"></div>
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/6a/91/83/caption.jpg?w=600&h=400&s=1" alt="Усадьба Колодеева" class="card-image" loading="lazy" />
+        <div class="card-body">
+          <h3>🏰 Усадьба Колодеева</h3>
+          <p>Исторический музей в усадьбе, хранящий память о культуре и быте региона. Один из самых высоко оценённых объектов. Рейтинг: 4.9/5 (7 отзывов).</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-bar" style="background: linear-gradient(90deg, #2dd4bf, #06b6d4);"></div>
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/19/a4/6a/47/img-20191015-091725-largejpg.jpg?w=600&h=400&s=1" alt="Вид на Борисов" class="card-image" loading="lazy" />
+        <div class="card-body">
+          <h3>📸 Вид на Борисов</h3>
+          <p>Живописный вид города с высоты. Борисов — один из старейших городов Беларуси, основанный в 1102 году князем Борисом Всеславичем.</p>
+        </div>
+      </div>
+    </div>  </section>
+
+  <!-- ИНТЕРЕСНЫЕ ФАКТЫ -->
+  <section class="section" style="background: #fff;">
+    <p class="section-label">Интересные факты</p>
+    <h2 class="section-title">А вы знали?</h2>
+    <p class="section-subtitle">Удивительные факты о городе Борисов</p>
+
+    <div class="facts-grid">
+      <div class="fact-item">
+        <div class="icon">⚽</div>
+        <p>Футбольный клуб БАТЭ — один из самых титулованных клубов Беларуси. Домашний стадион «Борисов-Арена» вмещает 13 126 зрителей.</p>
+      </div>
+      <div class="fact-item">
+        <div class="icon">🏭</div>
+        <p>В Борисове 42 завода и фабрики, включая крупнейшие: БАТЭ, Борисовский завод агрегатов, Борисовдрев, БелДжи (сборка автомобилей).</p>
+      </div>
+      <div class="fact-item">
+        <div class="icon">🏛️</div>
+        <p>В 2021 году Борисов был объявлен Культурной столицей Республики Беларусь. В 2002 году город отметил 900-летие.</p>
+      </div>
+      <div class="fact-item">
+        <div class="icon">🌊</div>
+        <p>Французы до сих пор употребляют слово «березина» (Bérézina) как синоним полного провала и катастрофы — в память о Березинской переправе 1812 года.</p>
+      </div>
+      <div class="fact-item">
+        <div class="icon">🗼</div>
+        <p>В Борисове сохранилась гиперболоидная водонапорная башня (1927), построенная по проекту знаменитого инженера Владимира Шухова.</p>
+      </div>
+      <div class="fact-item">
+        <div class="icon">📮</div>
+        <p>Борисовская бумажная фабрика Гознака — производитель бланков строгой отчётности, документной бумаги и школьных тетрадей для всей Беларуси.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ПРИРОДА -->
+  <section class="section nature-section">
+    <p class="section-label" style="color: #059669;">Природа</p>
+    <h2 class="section-title">Природные красоты</h2>
+    <p class="section-subtitle">Борисов окружён живописной природой — лесами, реками и заповедными местами</p>
+
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-body" style="text-align: center;">
+          <div class="icon">🌲</div>
+          <h3>Березинский заповедник</h3>
+          <p>Рядом с городом расположен знаменитый Березинский биосферный заповедник — уникальная экосистема с редкими видами животных и растений.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body" style="text-align: center;">
+          <div class="icon">🏞️</div>
+          <h3>Река Березина</h3>
+          <p>Живописная река длиной 613 км протекает через город. Идеальное место для рыбалки, каякинга и прогулок по набережной.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body" style="text-align: center;">
+          <div class="icon">🦌</div>
+          <h3>Фауна региона</h3>
+          <p>В окрестностях обитают лоси, олени, кабаны, рыси, волки и множество видов птиц. Настоящий рай для любителей природы.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h4>🏰 Борисов</h4>
+        <p>Древний город на берегах Березины, один из культурных и промышленных центров Беларуси. Основан в 1102 году князем Борисом Всеславичем.</p>
+      </div>
+      <div>
+        <h4>Информация</h4>
+        <ul>
+          <li>📍 Минская область, Беларусь</li>
+          <li>📏 Площадь: 46 км²</li>
+          <li>👥 Население: 134 732 (2025)</li>
+          <li>📅 Основан: 1102 год</li>
+          <li>🏅 Орден Отечественной войны I степени</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Как добраться</h4>
+        <ul>
+          <li>🚗 77 км от Минска</li>
+          <li>🚂 Железная дорога Москва — Брест (с 1871 г.)</li>
+          <li>🚌 Автобусы и маршрутные такси (30+ маршрутов)</li>
+          <li>✈️ Аэропорт Минск</li>
+        </ul>
+      </div>
+      <div>
+        <h4>📍 Борисовский район</h4>
+        <ul>
+          <li><a href="selsovet.html" style="color: #60a5fa;">🏘️ Сельсоветы района (12)</a></li>
+          <li>📏 Площадь: 2 977 км²</li>
+          <li>👥 Население: 165 511 (2026)</li>
+          <li>🏡 Сельских н.п.: 297</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Борисов — город с богатой историей | Тестовая страница для GitHub</p>
+      <p style="margin-top: 0.5rem;">
+        Источник: <a href="https://ru.wikipedia.org/wiki/Борисов_(город)" target="_blank" rel="noopener noreferrer" style="color: #60a5fa;">Википедия — свободная энциклопедия</a>
+      </p>
+      <p style="margin-top: 0.5rem;">
+        📍 <a href="selsovet.html" style="color: #60a5fa;">Сельсоветы Борисовского района</a>
+      </p>
+    </div>
+  </footer>
+
+  <div id="root" style="display:none;"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+</html>
